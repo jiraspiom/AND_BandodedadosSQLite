@@ -27,10 +27,16 @@ public class MainActivity extends AppCompatActivity {
             //Recuperando pessoas
             Cursor cursor = bancoDados.rawQuery("SELECT nome, idade FROM pessoas", null);
 
-            
+            int indiceNome = cursor.getColumnIndex("nome");
+            int indiceIdade = cursor.getColumnIndex("idade");
+
+            cursor.moveToFirst();
+
             while(cursor != null){
-                Log.i("RESULTADO nome",cursor.getString(0));
-             Log.i("RESULTADO idade", cursor.getString(1));
+                Log.i("RESULTADO nome",cursor.getString(indiceNome));
+                Log.i("RESULTADO idade", cursor.getString(indiceIdade));
+
+                cursor.moveToNext();
 
             }
 
