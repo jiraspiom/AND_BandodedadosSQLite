@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            //no logo da IDE android studio, filtrar por info, "RESULTADO" para ver inserindo dados
 
         }catch (Exception e){
             e.printStackTrace();
