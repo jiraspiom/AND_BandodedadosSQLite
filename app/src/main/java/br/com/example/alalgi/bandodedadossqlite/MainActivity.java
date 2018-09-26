@@ -21,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
             bancoDados.execSQL("CREATE TABLE IF NOT EXISTS pessoas (nome  VARCHAR, idade int(3))");
 
             //Inserindo dados
-            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Gilmar', 38) ");
-            bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Borges', 109) ");
+            //bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Gilmar', 38) ");
+            //bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Borges', 109) ");
 
             //Recuperando pessoas
-            Cursor cursor = bancoDados.rawQuery("SELECT nome, idade FROM pessoas", null);
+            String consulta =
+                    "SELECT nome, idade FROM pessoas" ;
+
+
+            Cursor cursor = bancoDados.rawQuery(consulta, null);
 
             int indiceNome = cursor.getColumnIndex("nome");
             int indiceIdade = cursor.getColumnIndex("idade");
@@ -33,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
             cursor.moveToFirst();
 
             while(cursor != null){
-                Log.i("RESULTADO nome",cursor.getString(indiceNome));
-                Log.i("RESULTADO idade", cursor.getString(indiceIdade));
+                String nome = cursor.getString(indiceNome);
+                String idade = cursor.getString(indiceIdade);
 
+                Log.i("RESULTADO nome",nome + " / idade: " + idade);
                 cursor.moveToNext();
 
             }
